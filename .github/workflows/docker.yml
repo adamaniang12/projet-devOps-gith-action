@@ -19,5 +19,6 @@ jobs:
     
     - name: Build and push
       run: |
-        docker build -t adamaniang12/mon-projet-php:latest .  # Changé pour construire depuis la racine (ajustez le chemin si nécessaire)
+        docker build -t adamaniang12/mon-projet-php:latest ./php/  # Changé pour utiliser votre GitHub username
         docker push adamaniang12/mon-projet-php:latest
+
