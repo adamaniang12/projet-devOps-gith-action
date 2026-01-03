@@ -1,0 +1,34 @@
+services:
+  php-apache:
+    build: .
+    container_name: iibs_apache
+    ports:
+      - "80:80"
+    volumes:
+      - ./src:/var/www/html
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:latest
+    container_name: iibs_postgres
+    environment:
+      POSTGRES_USER: user_iibs
+      POSTGRES_PASSWORD: passer
+      POSTGRES_DB: iibs_db
+    volumes:
+      - postgres_data:/var/lib/postgresql
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: iibs_pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "54:80"
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:
